@@ -2,6 +2,7 @@ package ContactModule;
 
 import java.io.IOException;
 
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -22,7 +23,9 @@ import POMUtilities.CreateOrgPomPage;
 import POMUtilities.HomePomPage;
 import POMUtilities.OrgInfoPomPage;
 import POMUtilities.OrgPomPage;
-
+/**
+ * This class is used to work on contact module
+ */
 @Listeners(ListenersUtility.Listeners.class)
 public class ContactModuleTest extends Baseclass {
 	@Test(groups = "smoke", retryAnalyzer = ListenersUtility.RetryAnalyser.class)
