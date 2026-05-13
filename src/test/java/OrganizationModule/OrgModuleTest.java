@@ -19,7 +19,9 @@ import POMUtilities.CreateOrgPomPage;
 import POMUtilities.HomePomPage;
 import POMUtilities.OrgInfoPomPage;
 import POMUtilities.OrgPomPage;
-
+/**
+* This class is used to work on organization module
+*/
 @Listeners(ListenersUtility.Listeners.class)
 public class OrgModuleTest extends Baseclass {
 	@Test(groups = "smoke", retryAnalyzer = ListenersUtility.RetryAnalyser.class)
