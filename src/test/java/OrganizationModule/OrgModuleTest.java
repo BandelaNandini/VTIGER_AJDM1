@@ -19,9 +19,10 @@ import POMUtilities.CreateOrgPomPage;
 import POMUtilities.HomePomPage;
 import POMUtilities.OrgInfoPomPage;
 import POMUtilities.OrgPomPage;
+
 /**
-* This class is used to work on organization module
-*/
+ * This class is used to work on organization module
+ */
 @Listeners(ListenersUtility.Listeners.class)
 public class OrgModuleTest extends Baseclass {
 	@Test(groups = "smoke", retryAnalyzer = ListenersUtility.RetryAnalyser.class)
@@ -179,6 +180,11 @@ public class OrgModuleTest extends Baseclass {
 
 	}
 
+	/**
+	 * This method is used to create org with phno
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
 	@Test(groups = "regression", retryAnalyzer = ListenersUtility.RetryAnalyser.class)
 	public void createOrgWithphno_test() throws InterruptedException, IOException {
 
