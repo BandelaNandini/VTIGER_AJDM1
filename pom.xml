@@ -6,6 +6,81 @@
 	<artifactId>Vtiger_CRM</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<properties>
+		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+	</properties>
+	<profiles>
+		<profile>
+			<id>batch</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.5</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>BatchExecution.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>group</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.5</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>GroupExe.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>paralleldist</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.5</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>ParallelDistExe.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>cbt</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>3.5.5</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>CBT.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<dependencies>
 
 		<!-- Source:
@@ -64,6 +139,22 @@
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>5.0.9</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.42</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>3.5.5</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>

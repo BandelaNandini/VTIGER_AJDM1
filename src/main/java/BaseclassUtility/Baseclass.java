@@ -32,7 +32,7 @@ public class Baseclass {
 	public WebDriver driver = null;
 	public static WebDriver sdriver = null;
 
-	@BeforeSuite
+	@BeforeSuite(alwaysRun = true)
 	public void connectToDB() throws SQLException {
 		dbutil = new DatabaseUtility();
 		dbutil.getconnectWithDB();
@@ -40,16 +40,16 @@ public class Baseclass {
 
 	}
 
-	@BeforeTest
+	@BeforeTest(alwaysRun = true)
 	public void configParallelExe() {
 		Reporter.log("Configured the parallel Exe", true);
 	}
 
 //	@Parameters("browser")
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void LaunchTheBrowser() throws IOException {
 		Reporter.log("Launching Browser", true);
-		String browser = putil.fetchDataFromPropFile("browser");
+		String browser = System.getProperty("browser", putil.fetchDataFromPropFile("browser"));
 		// Launch the browser
 		if (browser.equals("chrome"))
 			driver = new ChromeDriver();
@@ -59,18 +59,19 @@ public class Baseclass {
 			driver = new FirefoxDriver();
 		else
 			driver = new ChromeDriver();
-		
+
 		sdriver = driver;
 		UtilityObjectClass.setDriver(driver);
 
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void Login() throws IOException {
-		String url = putil.fetchDataFromPropFile("url");
-		String username = putil.fetchDataFromPropFile("username");
-		String password = putil.fetchDataFromPropFile("password");
-		String timeouts = putil.fetchDataFromPropFile("timeouts");
+
+		String url = System.getProperty("url", putil.fetchDataFromPropFile("url"));
+		String username = System.getProperty("username", putil.fetchDataFromPropFile("username"));
+		String password = System.getProperty("password", putil.fetchDataFromPropFile("password"));
+		String timeouts = System.getProperty("timeouts", putil.fetchDataFromPropFile("timeouts"));
 		wutil.maxTheWindow(driver);
 		wutil.waitForAnElement(driver, timeouts);
 		wutil.navigateToAnAppln(driver, url);
@@ -81,7 +82,7 @@ public class Baseclass {
 
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void Logout() {
 		HomePomPage home = new HomePomPage(driver);
 		wutil.mousehoverOnAnEle(driver, home.getAdminIcon());
@@ -90,18 +91,18 @@ public class Baseclass {
 
 	}
 
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void quitTheBrowser() {
 		wutil.quitTheBrowser(driver);
 		Reporter.log("Quiting the Browser", true);
 	}
 
-	@AfterTest
+	@AfterTest(alwaysRun = true)
 	public void closeConfigPE() {
 		Reporter.log("Close config of parallel exe", true);
 	}
 
-	@AfterSuite
+	@AfterSuite(alwaysRun = true)
 	public void Disconnect_DB() throws SQLException {
 		dbutil.disconnectWithDB();
 		Reporter.log("Disconnected with Database", true);
